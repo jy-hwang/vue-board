@@ -12,4 +12,11 @@ export default {
     return axios.get(BASE_URL + `posts/${id}`);
   },
 
+  postArticle: function (userId, title, body) {
+    return axios.post(BASE_URL + `posts`, {
+      userId: userId,
+      title: title,
+      body: body,
+    });
+  },
 };
