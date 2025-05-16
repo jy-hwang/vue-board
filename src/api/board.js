@@ -7,4 +7,9 @@ export default {
     console.log(page);
     return axios.get(BASE_URL + `posts?_limit=10`);
   },
+
+  getArticle: function (id) {
+    return axios.get(BASE_URL + `posts/${id}`);
+  },
+
 };
