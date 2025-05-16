@@ -1,5 +1,9 @@
 <template>
-  <h1>{{ title }}</h1>
+  <el-table :data="articles" style="width: 100%">
+    <el-table-column prop="id" label="id" width="80" />
+    <el-table-column prop="userId" label="userId" width="120" />
+    <el-table-column prop="title" label="title" />
+  </el-table>
 </template>
 <script>
 import apiBoard from "@/api/board";
@@ -7,16 +11,17 @@ import apiBoard from "@/api/board";
 export default {
   data() {
     return {
-      title: "hello",
+      articles: null,
     };
   },
   mounted() {
     apiBoard
-      .getArticle(1)
-      .then(function (response) {
-        console.log("getArticle : ", response);
+      .getArticles(0)
+      .then((response) => {
+        console.log("getArticles : ", response);
+        this.articles = response.data;
       })
-      .catch(function (e) {
+      .catch((e) => {
         console.log(e);
       });
   },
