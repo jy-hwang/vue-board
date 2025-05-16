@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <h1>{{ title }}</h1>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import apiBoard from "@/api/board";
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      title: "hello",
+    };
+  },
+  mounted() {
+    apiBoard
+      .getArticle(1)
+      .then(function (response) {
+        console.log("getArticle : ", response);
+      })
+      .catch(function (e) {
+        console.log(e);
+      });
+  },
+};
 </script>
